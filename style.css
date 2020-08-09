@@ -5,3 +5,21 @@
   border: 2px solid black;
   border-radius: 10px;
 }
+
+.questionbox{
+height: auto;
+padding: 5px;
+float: center;
+border: 2px solid black;
+border-radius: 10px;
+text-align: center;
+}
+
+.question {
+  text-align: center;
+}
+
+#submit {
+  text-align: center;
+  float: center;
+}
