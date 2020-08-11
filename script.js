@@ -51,12 +51,23 @@ function render() {
         const $choice = $('<button>')
         $choice.text(questions[questionIndex].choices[i])
         $choice.attr('data-index', i)
+        $choice.addClass('choice')
         $('#quiz').append($choice)
     }
 }
-$(document).on('click', 'button', function () {
-    console.log($(this).attr('data-index'))
-    console.log(questions[questionIndex].answer)
+$(document).on('click', '.choice', function () {
+    // console.log($(this).attr('data-index'))
+    // console.log(questions[questionIndex].answer)
+    if (parseInt($(this).attr('data-index')) === (questions[questionIndex].answer)) {
+        console.log('correct')
+        $(this).css({ 'background-color': 'green' })
+    } else {
+        console.log('wrong')
+        $(this).css({ 'background-color': 'red' })
+    }
+    $('#quiz').append($('<button>').text('Next Question').attr('id', 'next'))
+})
+$(document).on('click', '#next', function () {
     $('#quiz').empty()
     questionIndex = questionIndex + 1 //questionIndex++ 
     render()
