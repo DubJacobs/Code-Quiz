@@ -36,7 +36,7 @@ const questions = [{
 
 // const questions = ['Who invented Javacript?', 'What syntax is used to declare a variable?', 'What characters are used to define a string in Javascript?']
 let questionIndex = 0
-render()
+
 
 $('#submit').on('click', function () {
     $('#quiz').empty()
@@ -50,6 +50,15 @@ function render() {
     for (let i = 0; i < questions[questionIndex].choices.length; i++) {
         const $choice = $('<button>')
         $choice.text(questions[questionIndex].choices[i])
+        $choice.attr('data-index', i)
         $('#quiz').append($choice)
     }
 }
+$(document).on('click', 'button', function () {
+    console.log($(this).attr('data-index'))
+    console.log(questions[questionIndex].answer)
+    $('#quiz').empty()
+    questionIndex = questionIndex + 1 //questionIndex++ 
+    render()
+})
+render()
