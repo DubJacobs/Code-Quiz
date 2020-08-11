@@ -18,28 +18,38 @@
 // you can have an array strings as well as objects
 
 const questions = [{
-    question: 'Who invented Javascript?', 
-    choices: ['25', '28', '30'],
-    answer: 1
-},{
+    question: 'Who invented Javascript?',
+    choices: ['William Jacobs', 'Michael Scott', 'Brendan Eich'],
+    answer: 2
+}, {
     question: 'What characters are used to define a string?',
-    choices: ['25', '28', '30'],
+    choices: ['double/single quotes', 'exclamation point', 'comma'],
+    answer: 0
+}, {
+    question: 'When was Javascript first developed?',
+    choices: ['1992', '1995', '2006'],
     answer: 1
 }]
+
 
 // })
 
 // const questions = ['Who invented Javacript?', 'What syntax is used to declare a variable?', 'What characters are used to define a string in Javascript?']
 let questionIndex = 0
-const $questionOne = $('<h3>')
-$questionOne.text(questions[questionIndex].question)
-$('#quiz').append($questionOne)
+render()
 
-$('#submit').on('click', function(){
+$('#submit').on('click', function () {
     $('#quiz').empty()
-    const $question = $('<h3>')
-    questionIndex = questionIndex + 1 //questionIndex++
-    $question.text(questions[questionIndex].question)
-    $('#quiz').append($question)    
+    questionIndex = questionIndex + 1 //questionIndex++ 
+    render()
 })
-
+function render() {
+    const $question = $('<h3>')
+    $question.text(questions[questionIndex].question)
+    $('#quiz').append($question)
+    for (let i = 0; i < questions[questionIndex].choices.length; i++) {
+        const $choice = $('<button>')
+        $choice.text(questions[questionIndex].choices[i])
+        $('#quiz').append($choice)
+    }
+}
